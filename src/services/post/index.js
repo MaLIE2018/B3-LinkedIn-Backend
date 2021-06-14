@@ -1,6 +1,8 @@
 import express from "express";
 import createError from "http-errors";
+import models from "../../utils/db/index.js"
 
+const Posts = models.Post
 const per = express.Router()
 
 
