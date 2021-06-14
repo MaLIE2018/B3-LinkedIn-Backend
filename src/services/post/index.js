@@ -40,7 +40,6 @@ per.post("/", async (req,res, next) =>{
     console.log(error.errors)
   }
 })
-
 per.put("/:id", async (req,res, next) =>{
   try {
     const post = await Posts.findByPk(req.params.id)
