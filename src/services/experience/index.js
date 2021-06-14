@@ -12,7 +12,7 @@ er.get("/:userName", async (req,res, next) =>{
       where: {userId: req.params.userName},
     })
     
-    userExperiences ? res.send()
+    // userExperiences ? res.send()
   } catch (error) {
     console.log(error)
   }

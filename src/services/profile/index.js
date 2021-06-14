@@ -24,7 +24,7 @@ pr.get("/:id", async (req, res, next) => {
 })
 pr.post("/", async (req, res, next) => {
   try {
-    const profile = await Profile.create(req.params.body)
+    const profile = await Profile.create(req.body)
 
     profile ? res.send(profile) : next(createError(400, "Error creating profile, try again!" ))
 
@@ -46,25 +46,15 @@ pr.put("/:id", async (req, res, next) => {
 })
 pr.delete("/:id", async (req, res, next) => {
   try {
-    const deleted = await Profile.destoy({
+    const deleted = await Profile.destroy({
       where: {id: req.params.id}
     })
 
-    deleted ? res.send(deleted) : next(createError(500, "Error deleteing profile, try again!" ))
+    deleted ? res.send(deleted) : next(createError(500, "Error deleting profile, try again!" ))
   } catch (error) {
     console.log(error)
   }
 })
 
-// Post profile pic
-
-pr.post("/:id/picture", async (req, res, next) => {
-  try {
-  
-    
-  } catch (error) {
-    console.log(error)
-  }
-})
 
 export default pr
