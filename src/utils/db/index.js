@@ -46,7 +46,7 @@ Experience.belongsTo(Profile)
 Profile.hasMany(Post)
 Post.belongsTo(Profile)
 
-Profile.hasMany(Comment)
+Profile.hasMany(Comment, )
 Comment.belongsTo(Profile)
 
 Post.hasMany(Comment)

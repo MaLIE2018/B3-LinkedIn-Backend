@@ -32,7 +32,7 @@ app.use(function(req, res, next){
   }else{
     next()
   }
-})
+})  
 
 db.sequelize.sync({force: false}).then(() => {
 
