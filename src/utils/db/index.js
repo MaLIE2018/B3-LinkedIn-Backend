@@ -54,13 +54,13 @@ Comment.belongsTo(Post)
 
 // Post Likes Association 
 
-Profile.belongsToMany(Post, { through: { model: PostLike, unique: true, timestaps: true } })
-Post.belongsToMany(Profile, { through: { model: PostLike, unique: true, timestaps: true } })
+Profile.belongsToMany(Post, { through: { model: PostLike, unique: true, timestamps: true } })
+Post.belongsToMany(Profile, { through: { model: PostLike, unique: true, timestamps: true } })
 
 // Comment Likes Association 
 
-// Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true, timestaps: true } })
-// Comment.belongsToMany(Profile, { through: { model: CommentLike, unique: true, timestaps: true } })
+// Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true, timestamps: true } })
+// Comment.belongsToMany(Profile, { through: { model: CommentLike, unique: true, timestamps: true } })
 
 
 export default models;
