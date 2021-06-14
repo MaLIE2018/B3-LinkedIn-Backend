@@ -8,7 +8,7 @@ import ExperienceModel from "./experience.js"
 import PostModel from "./post.js"
 import CommentModel from "./comment.js"
 import PostLikeModel from "./postLike.js"
-import CommentLikeModel from "./postLike.js"
+import CommentLikeModel from "./commentLike.js"
 
 const { PGUSER, PGDATABASE, PGPASSWORD, PGHOST } = process.env
 
@@ -40,27 +40,28 @@ const models = {
 
 const { Profile, Experience, Post, Comment, PostLike, CommentLike } = models
 
+// Profile/Experience Association
 Profile.hasMany(Experience)
 Experience.belongsTo(Profile)
 
+// Profile/Post Association
 Profile.hasMany(Post)
 Post.belongsTo(Profile)
 
+// Profile/Comment Association
 Profile.hasMany(Comment)
 Comment.belongsTo(Profile)
 
+// Post/Comment Association 
 Post.hasMany(Comment)
 Comment.belongsTo(Post)
 
 // Post Likes Association 
-
 Profile.belongsToMany(Post, { through: { model: PostLike, unique: true, timestamps: true } })
 Post.belongsToMany(Profile, { through: { model: PostLike, unique: true, timestamps: true } })
 
 // Comment Likes Association 
-
-// Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true, timestamps: true } })
-// Comment.belongsToMany(Profile, { through: { model: CommentLike, unique: true, timestamps: true } })
-
+Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true, timestamps: true } })
+Comment.belongsToMany(Profile, { through: { model: CommentLike, unique: true, timestamps: true } })
 
 export default models;
