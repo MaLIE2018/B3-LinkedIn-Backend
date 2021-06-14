@@ -1,0 +1,32 @@
+{
+  "name": "B3-LinkedIn-Backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./app.js",
+    "dev": "nodemon -e js -r dotenv/config ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaLIE2018/B3-LinkedIn-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaLIE2018/B3-LinkedIn-Backend/issues"
+  },
+  "homepage": "https://github.com/MaLIE2018/B3-LinkedIn-Backend#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "http-errors": "^1.8.0",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
