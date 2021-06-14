@@ -3,6 +3,8 @@ import services from "./src/services/index.js"
 import createError from "http-errors"
 import errorHandlers from "./src/utils/errorHandler.js"
 import cors from "cors"
+import db from "./src/utils/db/index.js"
+
 const app = express()
 const PORT = process.env.PORT || 3001
 const whitelist =  [process.env.FE_DEV_URL, process.env.FE_PROD_URL]
@@ -32,4 +34,12 @@ app.use(function(req, res, next){
   }
 })
 
-app.listen(PORT, () => console.log("runns on " + PORT))
+db.sequelize.sync({force: false}).then(() => {
+
+  app.listen(PORT, () => console.log("server is running on port " + PORT));
+  
+  app.on("error", (err) => console.log("server is not running ", err));
+
+}).catch((e) => {
+  console.log(e)
+})    

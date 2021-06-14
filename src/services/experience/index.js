@@ -1,12 +1,18 @@
 import express from "express";
 import createError from "http-errors";
+import models from "../../utils/db/index.js"
 
 const er = express.Router()
 
+const Experience = models.Experience
 
-er.get("/", async (req,res, next) =>{
+er.get("/:userName", async (req,res, next) =>{
   try {
+    const userExperiences = await Experience.findAll({
+      where: {userId: req.params.userName},
+    })
     
+    userExperiences ? res.send()
   } catch (error) {
     console.log(error)
   }

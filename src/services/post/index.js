@@ -5,7 +5,6 @@ import models from "../../utils/db/index.js"
 const Posts = models.Post
 const per = express.Router()
 
-
 per.get("/", async (req,res, next) =>{
   try {
     
