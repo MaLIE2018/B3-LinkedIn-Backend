@@ -2,13 +2,14 @@ import s from "sequelize";
 
 const Sequelize = s.Sequelize;
 const DataTypes = s.DataTypes;
+const Op = s.Op
 
 import ProfileModel from "./profile.js"
 import ExperienceModel from "./experience.js"
 import PostModel from "./post.js"
 import CommentModel from "./comment.js"
 import PostLikeModel from "./postLike.js"
-import CommentLikeModel from "./postLike.js"
+import CommentLikeModel from "./commentLike.js"
 
 const { PGUSER, PGDATABASE, PGPASSWORD, PGHOST } = process.env
 
@@ -36,6 +37,8 @@ const models = {
     PostLike: PostLikeModel(sequelize, DataTypes),
     CommentLike: CommentLikeModel(sequelize, DataTypes),
     sequelize: sequelize,
+    op:Op
+
 }
 
 const { Profile, Experience, Post, Comment, PostLike, CommentLike } = models
@@ -54,13 +57,13 @@ Comment.belongsTo(Post)
 
 // Post Likes Association 
 
-Profile.belongsToMany(Post, { through: { model: PostLike, unique: true, timestamps: true } })
-Post.belongsToMany(Profile, { through: { model: PostLike, unique: true, timestamps: true } })
+Profile.belongsToMany(Post, { through: { model: PostLike, unique: true } })
+Post.belongsToMany(Profile, { through: { model: PostLike, unique: true } })
 
 // Comment Likes Association 
 
-// Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true, timestamps: true } })
-// Comment.belongsToMany(Profile, { through: { model: CommentLike, unique: true, timestamps: true } })
+Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true } })
+Comment.belongsToMany(Profile, { through: { model: CommentLike, unique: true } })
 
 
 export default models;

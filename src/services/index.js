@@ -11,6 +11,6 @@ route.use("/comments", CommentRouter)
 route.use('/experience', ExperienceRouter)
 route.use('/profile', ProfileRouter)
 route.use('/posts', PostRouter)
-route.use('/like', LikeRouter)
+route.use('/likes', LikeRouter)
 
 export default route
