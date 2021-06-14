@@ -1,38 +1,38 @@
 import express from "express";
 import createError from "http-errors";
 
-const pr = express.Router()
+const er = express.Router()
 
 
-pr.get("/", async (req,res, next) =>{
-  try {
-    res.status(200).send("Hallo")
-  } catch (error) {
-    console.log(error)
-  }
-})
-pr.get("/:id", async (req,res, next) =>{
+er.get("/", async (req,res, next) =>{
   try {
     
   } catch (error) {
     console.log(error)
   }
 })
-pr.post("/", async (req,res, next) =>{
+er.get("/:id", async (req,res, next) =>{
   try {
     
   } catch (error) {
     console.log(error)
   }
 })
-pr.put("/", async (req,res, next) =>{
+er.post("/", async (req,res, next) =>{
   try {
     
   } catch (error) {
     console.log(error)
   }
 })
-pr.delete("/", async (req,res, next) =>{
+er.put("/", async (req,res, next) =>{
+  try {
+    
+  } catch (error) {
+    console.log(error)
+  }
+})
+er.delete("/", async (req,res, next) =>{
   try {
     
   } catch (error) {
@@ -40,4 +40,4 @@ pr.delete("/", async (req,res, next) =>{
   }
 })
 
-export default pr
+export default er
