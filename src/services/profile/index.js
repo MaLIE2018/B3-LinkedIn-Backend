@@ -1,11 +1,9 @@
 import express from "express";
 import createError from "http-errors";
 import models from "../../utils/db/index.js"
-import { v2 as cloudinary } from "cloudinary"
-import { CloudinaryStorage } from "multer-storage-cloudinary"
-import multer from "multer"
-import { pipeline } from "stream";
-import { createPDF } from "../../utils/pdf.js";
+import fs from "fs"
+import {pipeline} from "stream"
+import { createPDF, tempFilePath } from "../../utils/pdf.js";
 
 const pr = express.Router()
 
@@ -24,11 +22,12 @@ pr.get("/", async (req, res, next) => {
 })
 pr.get("/:id/cv", async (req, res, next) => {
   try {
-    const profile = await Profile.findByPk(req.params.id)
-    profile ? res.send(profile) : next(createError(404, "Profile not found, check your ID!"))
-    res.setHeaders("Content-Disposition:, attachment; filename='file.pdf'")
-    pipeline(createPDF, res)
-    res.status(200).send("PDF successfully")
+    const profile = await Profile.findByPk(req.params.id, {raw:true})
+    profile ?? next(createError(404, "Profile not found, check your ID!"))
+    const experience = await Experience.findAll({where: {profileId: req.params.id}, raw:true})
+    res.setHeader("Content-Disposition", "attachment; filename=cv.pdf")
+    await createPDF(profile, experience)
+    pipeline(fs.createReadStream(tempFilePath), res, err=> {console.log(err); next(createError(500, {message: "Generic Server Error"}))})
   } catch (error) {
     console.log(error)
   }
