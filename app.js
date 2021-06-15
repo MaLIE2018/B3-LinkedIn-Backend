@@ -7,7 +7,7 @@ import db from "./src/utils/db/index.js"
 
 const app = express()
 const PORT = process.env.PORT || 3001
-const whitelist =  [process.env.FE_DEV_URL, process.env.FE_PROD_URL, "http://localhost:3000"]
+const whitelist = [process.env.FE_DEV_URL, process.env.FE_PROD_URL, "http://localhost:3000"]
 console.log('whitelist:', whitelist)
 
 const corsOptions = {
