@@ -33,6 +33,7 @@ export default (sequelize, DataTypes) => {
         username: {
             type: DataTypes.TEXT,
             allowNull: false,
+            defaultValue: "",
         },
         image: {
             type: DataTypes.TEXT,
