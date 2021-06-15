@@ -78,7 +78,8 @@ const upload = multer({
 
 er.post("/:expId/uploadImage", upload, async (req, res, next) => {
   try {
-    const data = await Experience.update({ image: req.file.path }, {
+    const exp = await Experience.findByPk(req.params.expId)
+    const data = await Experience.update({ ...exp ,image: req.file.path }, {
       where: { id: req.params.expId },
       returning: true
     })
