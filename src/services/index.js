@@ -11,7 +11,7 @@ const route = express.Router()
 route.use("/comments", CommentRouter)
 route.use('/experience', ExperienceRouter, FileRouter)
 route.use('/profile', ProfileRouter, FileRouter)
-route.use('/post', PostRouter)
+route.use('/post', PostRouter, FileRouter)
 route.use('/like', LikeRouter)
 
 export default route
