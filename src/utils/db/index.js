@@ -43,15 +43,19 @@ const models = {
 
 const { Profile, Experience, Post, Comment, PostLike, CommentLike } = models
 
+// Profile/Experience Association
 Profile.hasMany(Experience)
 Experience.belongsTo(Profile)
 
+// Profile/Post Association
 Profile.hasMany(Post)
 Post.belongsTo(Profile)
 
-Profile.hasMany(Comment, )
+// Profile/Comment Association
+Profile.hasMany(Comment)
 Comment.belongsTo(Profile)
 
+// Post/Comment Association 
 Post.hasMany(Comment)
 Comment.belongsTo(Post)
 
