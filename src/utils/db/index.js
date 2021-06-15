@@ -43,27 +43,27 @@ const models = {
 
 const { Profile, Experience, Post, Comment, PostLike, CommentLike } = models
 
-Profile.hasMany(Experience)
+Profile.hasMany(Experience,  {onDelete: "CASCADE"})
 Experience.belongsTo(Profile)
 
-Profile.hasMany(Post)
+Profile.hasMany(Post,  {onDelete: "CASCADE"})
 Post.belongsTo(Profile)
 
-Profile.hasMany(Comment, )
+Profile.hasMany(Comment, {onDelete: "CASCADE"})
 Comment.belongsTo(Profile)
 
-Post.hasMany(Comment)
+Post.hasMany(Comment, {onDelete: "CASCADE"})
 Comment.belongsTo(Post)
 
 // Post Likes Association 
 
-Profile.belongsToMany(Post, { through: { model: PostLike, unique: true } })
-Post.belongsToMany(Profile, { through: { model: PostLike, unique: true } })
+Profile.belongsToMany(Post, { through: { model: PostLike, unique: true, onDelete: "CASCADE" } })
+Post.belongsToMany(Profile, { through: { model: PostLike, unique: true, onDelete: "CASCADE" } })
 
 // Comment Likes Association 
 
-Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true } })
-Comment.belongsToMany(Profile, { through: { model: CommentLike, unique: true } })
+Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true, onDelete: "CASCADE" } })
+Comment.belongsToMany(Profile, { through: { model: CommentLike, unique: true, onDelete: "CASCADE" } })
 
 
 export default models;
