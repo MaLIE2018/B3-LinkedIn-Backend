@@ -37,7 +37,9 @@ const notFound = (err,req,res, next) => {
 const catchAll = (err,req,res, next) => {
   try {
     if(err){
+      console.log(err)
       res.status(500).send(err.message)
+      
     }else{
       next()
     }

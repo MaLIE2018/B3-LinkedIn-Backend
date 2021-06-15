@@ -37,7 +37,7 @@ per.post("/", async (req,res, next) =>{
     error.name === "SequelizeValidationError"?
     next(createError(400, {message: error.errors.map(e => e.message)}))
     :next(createError(500, {message: "Generic Server Error"}))
-    console.log(error.errors)
+    console.log(error)
   }
 })
 per.put("/:id", async (req,res, next) =>{
