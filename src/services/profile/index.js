@@ -4,6 +4,8 @@ import models from "../../utils/db/index.js"
 import { v2 as cloudinary } from "cloudinary"
 import { CloudinaryStorage } from "multer-storage-cloudinary"
 import multer from "multer"
+import { pipeline } from "stream";
+import { createPDF } from "../../utils/pdf.js";
 
 const pr = express.Router()
 
@@ -20,6 +22,17 @@ pr.get("/", async (req, res, next) => {
     console.log(error)
   }
 })
+pr.get("/:id/cv", async (req, res, next) => {
+  try {
+    const profile = await Profile.findByPk(req.params.id)
+    profile ? res.send(profile) : next(createError(404, "Profile not found, check your ID!"))
+    res.setHeaders("Content-Disposition:, attachment; filename='file.pdf'")
+    pipeline(createPDF, res)
+    res.status(200).send("PDF successfully")
+  } catch (error) {
+    console.log(error)
+  }
+})
 pr.get("/:id", async (req, res, next) => {
   try {
     const profile = await Profile.findByPk(req.params.id)
@@ -28,6 +41,7 @@ pr.get("/:id", async (req, res, next) => {
     console.log(error)
   }
 })
+
 pr.post("/", async (req, res, next) => {
   try {
     const profile = await Profile.create(req.body)
