@@ -62,15 +62,5 @@ pr.delete("/:id", async (req, res, next) => {
   }
 })
 
-// Post profile pic
-
-pr.post("/:id/picture", async (req, res, next) => {
-  try {
-  
-    
-  } catch (error) {
-    console.log(error)
-  }
-})
 
 export default pr

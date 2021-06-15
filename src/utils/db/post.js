@@ -10,10 +10,6 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        username: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
         image: {
             type: DataTypes.TEXT,
             allowNull: false,

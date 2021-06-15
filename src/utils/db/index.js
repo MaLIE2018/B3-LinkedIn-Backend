@@ -2,6 +2,7 @@ import s from "sequelize";
 
 const Sequelize = s.Sequelize;
 const DataTypes = s.DataTypes;
+const Op = s.Op
 
 import ProfileModel from "./profile.js"
 import ExperienceModel from "./experience.js"
@@ -36,6 +37,8 @@ const models = {
     PostLike: PostLikeModel(sequelize, DataTypes),
     CommentLike: CommentLikeModel(sequelize, DataTypes),
     sequelize: sequelize,
+    op:Op
+
 }
 
 const { Profile, Experience, Post, Comment, PostLike, CommentLike } = models
@@ -57,11 +60,14 @@ Post.hasMany(Comment)
 Comment.belongsTo(Post)
 
 // Post Likes Association 
-Profile.belongsToMany(Post, { through: { model: PostLike, unique: true, timestamps: true } })
-Post.belongsToMany(Profile, { through: { model: PostLike, unique: true, timestamps: true } })
+
+Profile.belongsToMany(Post, { through: { model: PostLike, unique: true } })
+Post.belongsToMany(Profile, { through: { model: PostLike, unique: true } })
 
 // Comment Likes Association 
-Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true, timestamps: true } })
-Comment.belongsToMany(Profile, { through: { model: CommentLike, unique: true, timestamps: true } })
+
+Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true } })
+Comment.belongsToMany(Profile, { through: { model: CommentLike, unique: true } })
+
 
 export default models;

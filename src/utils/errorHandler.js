@@ -5,6 +5,9 @@ const badRequest = (err,req,res, next) => {
     }else{
       next()
     }
+    if(err === "ValidationError"){
+      res.status(400).send(err)
+    }
   } catch (error) {
     console.log(error)
   }
@@ -39,8 +42,7 @@ const catchAll = (err,req,res, next) => {
       next()
     }
   } catch (error) {
-    console.log(error)
+    console.log("errror",error.errors)
   }
 }
-
 export default [catchAll, forbidden, badRequest, notFound]
