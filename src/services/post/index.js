@@ -10,7 +10,7 @@ per.get("/", async (req,res, next) =>{
   try {
     const posts = await Posts.findAll({
       include: [
-        {model: Profiles , attributes: ["name", "surname", "title", 'image']}
+        {model: Profiles , attributes: ["name", "surname", "title", 'image','id']}
       ]})
     posts? res.status(200).send(posts) : next(createError(404, {message: "No Posts found"}))
   } catch (error) {
