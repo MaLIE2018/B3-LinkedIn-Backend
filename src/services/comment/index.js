@@ -7,10 +7,11 @@ const Profiles = models.Profile
 const cr = express.Router()
 
 
-cr.get("/", async (req,res, next) =>{
+cr.get("/:postId/post", async (req,res, next) =>{
   try {
     try {
       const comments = await Comments.findAll({
+        where: {postId: req.params.postId},
         include: [
           {model: Profiles , attributes: ["name", "surname", "title", 'image']}
         ]})
