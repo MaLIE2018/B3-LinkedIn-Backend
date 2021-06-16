@@ -26,7 +26,7 @@ const uploadProfileImage = multer({
 
 }).single("profileImage")
 
-fr.post("/:profileId/uploadImage", uploadProfileImage, async (req, res, next) => {
+fr.post("/:profileId/uploadProfileImage", uploadProfileImage, async (req, res, next) => {
   try {
     const profile = await Profile.findByPk(req.params.profileId)
 
@@ -49,7 +49,7 @@ const uploadExperienceImage = multer({
 
 }).single("experienceImage")
 
-fr.post("/:expId/uploadImage", uploadExperienceImage, async (req, res, next) => {
+fr.post("/:expId/uploadExperienceImage", uploadExperienceImage, async (req, res, next) => {
   try {
     const exp = await Experience.findByPk(req.params.expId)
     console.log("experience" + exp)
@@ -66,18 +66,6 @@ fr.post("/:expId/uploadImage", uploadExperienceImage, async (req, res, next) => 
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // Upload post picture
 
 
@@ -86,10 +74,10 @@ const uploadPostImage = multer({
 
 }).single("postImage")
 
-fr.post("/:postId/uploadImage", uploadPostImage, async (req, res, next) => {
+fr.post("/:postId/uploadPostImage", uploadPostImage, async (req, res, next) => {
   try {
-    const post = await Post.findByPk(req.params.expId)
-    console.log("Post" + exp)
+    const post = await Post.findByPk(req.params.postId)
+    console.log("Post" + post)
     const data = await Post.update({ ...post, image: req.file.path }, {
       where: { id: req.params.postId },
       returning: true
@@ -99,9 +87,9 @@ fr.post("/:postId/uploadImage", uploadPostImage, async (req, res, next) => {
 
   } catch (error) {
     next(error)
+    console.log(console.log(error))
   }
 })
-
 
 
 // Export experiences as CSV
@@ -112,7 +100,7 @@ fr.get("/:profileId/exportCSV", async (req, res, next) => {
       where: { profileId: req.params.profileId },
     })
 
-    const fields = ["id", "role", "company", "startData", "endDate", "description", "area"]
+    const fields = ["id", "role", "company", "startDate", "endDate", "description", "area"]
 
     const parser = new Parser({ fields })
     const csv = parser.parse(userExperiences)
