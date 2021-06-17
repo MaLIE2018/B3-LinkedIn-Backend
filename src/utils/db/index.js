@@ -66,4 +66,4 @@ Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true, on
 Comment.belongsToMany(Profile, { through: { model: CommentLike, unique: true, onDelete: "CASCADE" } })
 
 
-export default models;
+export default models; 
