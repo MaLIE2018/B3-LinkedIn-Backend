@@ -60,6 +60,10 @@ Comment.belongsTo(Post)
 Profile.belongsToMany(Post, { through: { model: PostLike, unique: true, onDelete: "CASCADE" } })
 Post.belongsToMany(Profile, { through: { model: PostLike, unique: true, onDelete: "CASCADE" } })
 
+Profile.hasMany(PostLike, {onDelete: "CASCADE"})
+PostLike.belongsTo(Profile)
+
+
 // Comment Likes Association 
 
 Profile.belongsToMany(Comment, { through: { model: CommentLike, unique: true, onDelete: "CASCADE" } })

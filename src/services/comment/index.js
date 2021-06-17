@@ -24,6 +24,19 @@ cr.get("/:postId/post", async (req,res, next) =>{
     console.log(error)
   }
 })
+cr.get("/:postId/post/count", async (req,res, next) =>{
+  try {
+    try {
+      const noOfComments = await Comments.count({where: {postId: req.params.postId}})
+     res.status(200).send({count:  noOfComments})
+    } catch (error) {
+      console.log(error)
+      next(createError(500, {message: "Generic Server Error"}))
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
 cr.get("/:id", async (req,res, next) =>{
   try {
     try {
