@@ -27,6 +27,7 @@ per.get("/:id", async (req,res, next) =>{
     next(createError(500, {message: "Generic Server Error"}))
   }
 })
+
 per.post("/", async (req,res, next) =>{
   try {
     const profile = await Profiles.findByPk(req.body.profileId)

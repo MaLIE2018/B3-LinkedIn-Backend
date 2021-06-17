@@ -22,6 +22,18 @@ lr.get("/comment/:id", async (req,res, next) =>{
     console.log(error)
   }
 })
+lr.get("/post/:id/users", async (req,res, next) =>{
+  try {
+    const post = await Posts.findByPk(req.params.id)
+    post ?? next(createError(404, {message: "Post not found"}))
+    const users = await PostLikes.findAll({where: {postId: req.params.id}, include: [
+      {model: Profiles , attributes: ["name", "surname"]}
+    ], attributes: {exclude:["id", "createdAt", "updatedAt", "profileId", "postId"]}})
+    res.status(200).send({users: users})
+  } catch (error) {
+    console.log(error)
+  }
+})
 lr.get("/post/:id", async (req,res, next) =>{
   try {
     const post = await Posts.findByPk(req.params.id)

@@ -33,7 +33,7 @@ app.use(function(req, res, next){
   }
 })  
 
-db.sequelize.sync({force: false}).then(() => {
+db.sequelize.sync({alter:true}).then(() => {
 
   app.listen(PORT, () => console.log("server is running on port " + PORT));
   
