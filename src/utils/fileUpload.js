@@ -4,11 +4,13 @@ import { CloudinaryStorage } from "multer-storage-cloudinary"
 import multer from "multer"
 import models from "../utils/db/index.js"
 import createError from "http-errors"
-// import  {Parser, Transform } from "json2csv"
+import json2csv from "json2csv"
+
 import { pipeline, Readable } from "stream"
 
 const fr = express.Router()
 
+const {Parser, Transform} = json2csv
 const {Profile, Experience, Post} = models
 
 // Upload profile picture
