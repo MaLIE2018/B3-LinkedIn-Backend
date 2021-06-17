@@ -11,10 +11,10 @@ import CommentModel from "./comment.js"
 import PostLikeModel from "./postLike.js"
 import CommentLikeModel from "./commentLike.js"
 
-const { PGUSER, PGDATABASE, PGPASSWORD, PGHOST } = process.env
+const { USER, DATABASE, PASSWORD, HOST } = process.env
 
-const sequelize = new Sequelize(PGDATABASE, PGUSER, PGPASSWORD, {
-    host: PGHOST,
+const sequelize = new Sequelize(DATABASE, USER, PASSWORD, {
+    host: HOST,
     dialect: "postgres"
 })
 
