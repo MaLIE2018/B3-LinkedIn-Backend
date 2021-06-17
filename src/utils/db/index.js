@@ -15,7 +15,13 @@ const { USER, DATABASE, PASSWORD, HOST } = process.env
 
 const sequelize = new Sequelize(DATABASE, USER, PASSWORD, {
     host: HOST,
-    dialect: "postgres"
+    dialect: "postgres",
+    dialectOptions:{
+        ssl:{
+            require:true, 
+            rejectUnauthorized: false
+        }
+    }
 })
 
 const testConnection = async () => {
