@@ -1,10 +1,10 @@
 import express from "express"
-import { v2 } from "cloudinary"
+import { v2 as cloudinary } from "cloudinary"
 import { CloudinaryStorage } from "multer-storage-cloudinary"
 import multer from "multer"
 import models from "../utils/db/index.js"
 import createError from "http-errors"
-import Parser from "json2csv"
+import  {Parser, Transform } from "json2csv"
 import { pipeline, Readable } from "stream"
 
 const fr = express.Router()
@@ -14,7 +14,7 @@ const {Profile, Experience, Post} = models
 // Upload profile picture
 
 const cloudinaryStorage = new CloudinaryStorage({
-  v2,
+  cloudinary,
   params: {
     folder: "linkedInProfilePictures",
     resource_type: "auto"
