@@ -21,14 +21,17 @@ export default (sequelize, DataTypes) => {
         bio: {
             type: DataTypes.TEXT,
             allowNull: false,
+            defaultValue: ""
         },
         title: {
             type: DataTypes.TEXT,
             allowNull: false,
+            defaultValue: ""
         },
         area: {
             type: DataTypes.TEXT,
             allowNull: false,
+           
         },
         username: {
             type: DataTypes.TEXT,
@@ -38,7 +41,13 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allowNull: false,
             defaultValue: "",
+        },
+         password: {
+            type: DataTypes.TEXT,
+            allowNull: false, 
+            defaultValue: ""
         }
+       
 
     })
     return profile
