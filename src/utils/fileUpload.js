@@ -1,6 +1,5 @@
 import express from "express"
 import cloudinary from "cloudinary"
-import {CloudinaryStorage}  from "multer-storage-cloudinary"
 import multer from "multer"
 import models from "../utils/db/index.js"
 import createError from "http-errors"
@@ -10,6 +9,7 @@ import { pipeline, Readable } from "stream"
 
 const fr = express.Router()
 
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const {Parser, Transform} = json2csv
 const c = cloudinary.v2
 
