@@ -1,6 +1,6 @@
 import express from "express"
 import cloudinary from "cloudinary"
-import { CloudinaryStorage } from "multer-storage-cloudinary"
+import CloudinaryStorage  from "multer-storage-cloudinary"
 import multer from "multer"
 import models from "../utils/db/index.js"
 import createError from "http-errors"
