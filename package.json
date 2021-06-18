@@ -38,7 +38,6 @@
     "pdfmake": "0.1.71",
     "pg": "8.6.0",
     "pg-hstore": "2.3.4",
-    "require": "^2.4.20",
     "sequelize": "6.6.2",
     "stream": "0.0.2"
   },
